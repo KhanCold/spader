@@ -1,0 +1,36 @@
+name: retriever
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+  - openjdk
+  - pip
+  - pip:
+      - transformers
+      - datasets
+      - faiss-cpu
+      - fastapi
+      - uvicorn
+      - pydantic
+      - tqdm
+      - pyserini
+      - pyjnius
+      - Cython
+      - pandas
+      - scikit-learn
+      - sentencepiece
+      - nvitop
+      - flask
+      - waitress  # Recommended for production-ish Flask on Windows
+      - python-dotenv
+      - huggingface-hub
+      - onnxruntime
+      - openai
+      - requests

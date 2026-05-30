@@ -1,0 +1,26 @@
+tools:
+  - class_name: verl.tools.search_tool.SearchTool
+    config:
+      retrieval_service_url: http://127.0.0.1:8000/retrieve
+      topk: 5
+      initial_k: 50
+      max_chars: 10000
+      num_workers: 20
+      rate_limit: 20
+      timeout: 90
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: search
+        description: Searches the web using keyword-based retrieval (BM25). Returns top-5 results per query by default. Multiple queries in 'query_list' are subject to a 10,000-character total limit, triggering a dynamic top-k strategy that distributes results evenly across all queries.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              items:
+                type: string
+              description: A list of search queries. Include specific keywords that are likely to appear in the target documents.
+          required: 
+            - query_list

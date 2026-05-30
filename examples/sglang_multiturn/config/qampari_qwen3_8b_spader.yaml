@@ -1,0 +1,128 @@
+hydra:
+  searchpath:
+    - file://verl/trainer/config
+
+defaults:
+  - ppo_trainer
+  - _self_
+
+# QAMPARI + Qwen3-8B SPADER (sglang, multiturn) with step-wise peer advantage and diversity-aware reward.
+
+algorithm:
+  # Step-aware advantage for token-level (dense) reward.
+  adv_estimator: masked_step_grpo
+  gamma: 0.9
+  use_kl_in_reward: false
+
+data:
+  train_batch_size: 32
+  # val_batch_size: 32
+  max_prompt_length: 512
+  max_response_length: 8192
+  filter_overlong_prompts: true
+  truncation: error
+  return_raw_chat: true
+  shuffle: false
+
+  train_max_samples: -1
+  val_max_samples: -1
+
+  train_files: ${oc.env:TRAIN_DATA}
+  val_files: ${oc.env:VAL_DATA}
+
+actor_rollout_ref:
+  model:
+    path: ${oc.env:BASE_MODEL}
+    use_remove_padding: true
+    enable_gradient_checkpointing: true
+    # lora_rank: 64
+    # lora_alpha: 64
+    # target_modules: all-linear
+
+  actor:
+    optim:
+      lr: 1e-5
+      lr_warmup_steps_ratio: 0.05
+    ppo_mini_batch_size: 32
+    ppo_micro_batch_size_per_gpu: 4
+    use_kl_loss: true
+    kl_loss_coef: 0.001
+    kl_loss_type: low_var_kl
+    # entropy_coeff: 0.001
+    fsdp_config:
+      model_dtype: bfloat16
+      param_offload: false
+      optimizer_offload: false
+
+  rollout:
+    name: sglang
+    max_model_len: 8704
+    log_prob_micro_batch_size_per_gpu: 4
+    tensor_model_parallel_size: 1
+    gpu_memory_utilization: 0.6
+    n: 16
+    # temperature: 1.0
+    # top_p: 0.9
+
+    agent:
+      default_agent_loop: text_tool_agent
+
+    multi_turn:
+      enable: true
+      format: text
+      max_assistant_turns: 16
+      max_tool_response_length: 11000
+      tool_response_truncate_side: left
+      tool_config_path: ${oc.env:TOOL_CONFIG,${oc.env:PROJECT_DIR}/examples/sglang_multiturn/config/tool_config/search_tool_config.yaml}
+
+  ref:
+    log_prob_micro_batch_size_per_gpu: 4
+    fsdp_config:
+      model_dtype: bfloat16
+      param_offload: false
+
+reward_manager:
+  source: register
+  name: spader_step
+
+# Parameters for SpaderStepRewardManager (passed via reward_model.reward_kwargs)
+reward_model:
+  enable: false
+  # IMPORTANT: disable experimental reward_loop so rewards are computed by
+  # `reward_manager: spader_step` (token-level + step-wise extra infos) instead of
+  # being precomputed into sparse `rm_scores` during rollout.
+  use_reward_loop: false
+  reward_kwargs:
+    alpha: 1.0
+    beta: 4.0
+    lambda_val: 1.0
+    tool_round_cost: 0.01
+    cost_free_steps: 100
+    cost_rampup_steps: 100
+    enable_final_answer_reward: true
+    final_answer_weight: 1.0
+
+trainer:
+  critic_warmup: 0
+  val_before_train: true
+  logger: [console, wandb]
+
+  project_name: ${oc.env:WAND_PROJECT}
+  experiment_name: ${oc.env:EXPERIMENT_NAME}
+
+  n_gpus_per_node: 8
+  nnodes: 1
+
+  save_freq: 100
+  test_freq: 50
+
+  dump_val_jsonl: true
+  # dump_val_jsonl_num: 100
+  validation_data_dir: ${oc.env:RUN_DIR}/eval
+
+  rollout_data_dir: ${oc.env:RUN_DIR}/rollouts
+
+  default_hdfs_dir: null
+  default_local_dir: ${oc.env:RUN_DIR}/checkpoints
+
+  total_epochs: 1

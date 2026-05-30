@@ -1,0 +1,97 @@
+# verl-sglang 环境 - RLHF/强化学习训练
+# 使用方法:
+#   conda env create -f verl-sglang.yml
+#   conda activate verl-sglang
+#   pip install torch==2.8.0 torchaudio==2.8.0 torchvision --index-url https://download.pytorch.org/whl/cu128
+#   pip install flash-attn==2.7.4.post1 --no-build-isolation
+#
+# 说明: PyTorch 和 flash-attn 需要手动 pip 安装
+name: verl-sglang
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - setuptools
+  - wheel
+  - pip:
+      # ---- PyTorch (手动安装 cu128 版本, 见顶部说明) ----
+      # 运行: pip install torch==2.8.0 torchaudio==2.8.0 torchvision --index-url https://download.pytorch.org/whl/cu128
+      # 运行: pip install flash-attn==2.7.4.post1 --no-build-isolation
+
+      # ---- verl + sglang 核心 ----
+      - sglang[all]==0.5.2
+      - sgl-kernel==0.3.9.post2
+      - flashinfer-python==0.3.1
+      - vllm==0.11.0
+      - ray==2.53.0
+      - megatron-core==0.13.1
+      - tensordict==0.10.0
+      - torchdata==0.11.0
+      - torchao==0.9.0
+      - xformers==0.0.32.post1
+      - triton==3.4.0
+
+      # ---- HuggingFace 生态 ----
+      - transformers==4.57.3
+      - accelerate==1.12.0
+      - peft==0.18.1
+      - tokenizers==0.22.2
+      - huggingface-hub==0.36.0
+      - safetensors==0.7.0
+      - datasets==4.4.2
+      - hf-transfer==0.1.9
+
+      # ---- 训练/优化 ----
+      - liger-kernel==0.6.4
+      - wandb==0.24.0
+      - tensorboard==2.20.0
+      - torch-memory-saver==0.0.8
+      - nvidia-nccl-cu12==2.27.3
+      - nvidia-cudnn-frontend==1.17.0
+      - nvidia-ml-py==13.590.44
+
+      # ---- 推理引擎辅助 ----
+      - compressed-tensors==0.11.0
+      - outlines==1.2.9
+      - outlines-core==0.2.11
+      - xgrammar==0.1.25
+      - lm-format-enforcer==0.11.3
+      - llguidance==0.7.30
+      - gguf==0.17.1
+      - mistral-common==1.8.8
+      - partial-json-parser==0.2.1.1.post7
+
+      # ---- 数据处理 ----
+      - numpy==1.26.4
+      - scipy==1.17.0
+      - pandas==2.3.3
+      - pyarrow==22.0.0
+
+      # ---- 配置/工具 ----
+      - hydra-core==1.3.2
+      - omegaconf==2.3.0
+      - pybind11==3.0.1
+      - codetiming==1.4.0
+      - mathruler==0.1.0
+      - pylatexenc==2.10
+      - blobfile==3.0.0
+      - tqdm==4.67.1
+      - packaging==25.0
+      - psutil==7.2.1
+      - einops==0.8.1
+      - orjson==3.11.5
+      - msgspec==0.20.0
+      - loguru==0.7.3
+      - tabulate==0.9.0
+      - openai==1.99.1
+      - anthropic==0.76.0
+
+      # ---- CUDA Python 绑定 ----
+      - cuda-python==13.1.1
+      - cupy-cuda12x==13.6.0
+
+      # ---- 开发/调试 ----
+      - pytest==9.0.2
+      - py-spy==0.4.1
+      - ruff==0.14.13

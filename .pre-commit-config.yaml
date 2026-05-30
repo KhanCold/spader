@@ -1,0 +1,21 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.12.2"
+    hooks:
+      - id: ruff
+        args: ["--fix", "--show-fixes", "--output-format=full"]
+        exclude: ^.*\.(ipynb)$
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.17.0"
+    hooks:
+      - id: mypy
+
+  - repo: local
+    hooks:
+      - id: syntax-check
+        name: Parse Python files
+        entry: python -c "import ast, pathlib; [ast.parse(p.read_text(encoding='utf-8'), filename=str(p)) for p in pathlib.Path('.').rglob('*.py')]"
+        language: python
+        pass_filenames: false
