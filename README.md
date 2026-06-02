@@ -265,12 +265,16 @@ bash run_test/run_sh/run_eval_llama3_8b_spader.sh
 
 Results are written to `run_test/results/<dataset>/`.
 
-<!-- ## Citation
+## Citation
 
 ```bibtex
-@misc{spader2026,
-  title = {SPADER: Step-wise Peer Advantage with Diversity-Aware Exploration Rewards for Multi-Answer Question Answering},
-  author = {Anonymous},
-  year = {2026}
+@misc{shi2026spaderstepwisepeeradvantage,
+      title={SPADER: Step-wise Peer Advantage with Diversity-Aware Exploration Rewards for Multi-Answer Question Answering}, 
+      author={Qiming Shi and Zhaolu Kang and Yunfan Zhou and Di Weng and Yingcai Wu},
+      year={2026},
+      eprint={2606.00593},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2606.00593}, 
 }
-``` -->
+```
