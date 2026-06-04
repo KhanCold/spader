@@ -38,6 +38,12 @@ SPADER trains tool-augmented search agents for multi-answer QA. The repository k
 
 ## Overview
 
+<p align="center">
+  <img src="assets/method.png" alt="SPADER method overview" width="900">
+</p>
+
+<p align="center"><em>SPADER estimates step-wise peer advantages over parallel tool-use trajectories and adds diversity-aware rewards for broad answer discovery.</em></p>
+
 | Component               | Scope                                                     |
 | ----------------------- | --------------------------------------------------------- |
 | Retrieval environment   | Local HTTP service for Wikipedia-based search             |
@@ -56,6 +62,7 @@ SPADER trains tool-augmented search agents for multi-answer QA. The repository k
 ## Repository Layout
 
 ```text
+assets/                          # README figures and static assets
 examples/sglang_multiturn/
   config/                         # QAMPARI training configs
   qampari/                        # training launch scripts
