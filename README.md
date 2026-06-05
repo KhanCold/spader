@@ -7,6 +7,7 @@
 <p>
   <a href="https://huggingface.co/KhanCold/qwen3-8b-spader"><img alt="Qwen3-8B checkpoint" src="https://img.shields.io/badge/HF-Qwen3--8B--SPADER-ffcc4d?logo=huggingface&logoColor=black"></a>
   <a href="https://huggingface.co/KhanCold/llama3-8b-spader"><img alt="Llama checkpoint" src="https://img.shields.io/badge/HF-Llama--3.1--8B--SPADER-ffcc4d?logo=huggingface&logoColor=black"></a>
+  <a href="https://arxiv.org/abs/2606.00593"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2606.00593-b31b1b?logo=arxiv&logoColor=white"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white">
   <img alt="License" src="https://img.shields.io/badge/License-Apache--2.0-2f6f5e">
 </p>
