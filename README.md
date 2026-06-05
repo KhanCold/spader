@@ -34,6 +34,7 @@ SPADER includes Step-wise Peer Advantage (SPA), a critic-free step-level credit 
 It also includes a diversity-aware exploration reward that promotes long-tail entity discovery by upweighting rare findings and downweighting redundant ones.
 Experiments on QAMPARI, Mintaka, WebQSP, and QUEST show that SPADER generally improves recall and overall F1 over prompting-based agents, outcome-supervised RL methods, and recent step-level supervision approaches.
 Our code and model weights are available at [https://github.com/KhanCold/spader](https://github.com/KhanCold/spader).
+Paper: [arXiv:2606.00593](https://arxiv.org/abs/2606.00593).
 
 SPADER trains tool-augmented search agents for multi-answer QA. The repository keeps the original VERL training stack and adds a SPADER reward manager plus a masked step-level GRPO advantage estimator.
 
