@@ -7,7 +7,6 @@
 <p>
   <a href="https://huggingface.co/KhanCold/qwen3-8b-spader"><img alt="Qwen3-8B checkpoint" src="https://img.shields.io/badge/HF-Qwen3--8B--SPADER-ffcc4d?logo=huggingface&logoColor=black"></a>
   <a href="https://huggingface.co/KhanCold/llama3-8b-spader"><img alt="Llama checkpoint" src="https://img.shields.io/badge/HF-Llama--3.1--8B--SPADER-ffcc4d?logo=huggingface&logoColor=black"></a>
-  <a href="https://arxiv.org/abs/2606.00593"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2606.00593-b31b1b?logo=arxiv&logoColor=white"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white">
   <img alt="License" src="https://img.shields.io/badge/License-Apache--2.0-2f6f5e">
 </p>
@@ -33,8 +32,6 @@ We propose **SPADER**, a reinforcement learning framework for long-horizon tool 
 SPADER includes Step-wise Peer Advantage (SPA), a critic-free step-level credit assignment mechanism that aligns parallel trajectories by decision step and estimates advantages from peer returns.
 It also includes a diversity-aware exploration reward that promotes long-tail entity discovery by upweighting rare findings and downweighting redundant ones.
 Experiments on QAMPARI, Mintaka, WebQSP, and QUEST show that SPADER generally improves recall and overall F1 over prompting-based agents, outcome-supervised RL methods, and recent step-level supervision approaches.
-Our code and model weights are available at [https://github.com/KhanCold/spader](https://github.com/KhanCold/spader).
-Paper: [arXiv:2606.00593](https://arxiv.org/abs/2606.00593).
 
 SPADER trains tool-augmented search agents for multi-answer QA. The repository keeps the original VERL training stack and adds a SPADER reward manager plus a masked step-level GRPO advantage estimator.
 
@@ -273,17 +270,3 @@ bash run_test/run_sh/run_eval_llama3_8b_spader.sh
 ```
 
 Results are written to `run_test/results/<dataset>/`.
-
-## Citation
-
-```bibtex
-@misc{shi2026spaderstepwisepeeradvantage,
-      title={SPADER: Step-wise Peer Advantage with Diversity-Aware Exploration Rewards for Multi-Answer Question Answering}, 
-      author={Qiming Shi and Zhaolu Kang and Yunfan Zhou and Di Weng and Yingcai Wu},
-      year={2026},
-      eprint={2606.00593},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2606.00593}, 
-}
-```
