@@ -4,7 +4,10 @@
 
 **Step-wise Peer Advantage with Diversity-Aware Exploration Rewards for Multi-Answer Question Answering**
 
+**Accepted to EMNLP 2026 (Main Conference).**
+
 <p>
+  <a href="https://aclanthology.org/2026.emnlp-main.894/"><img alt="EMNLP 2026 Main Conference" src="https://img.shields.io/badge/EMNLP%202026-Main%20Conference-blue"></a>
   <a href="https://huggingface.co/KhanCold/qwen3-8b-spader"><img alt="Qwen3-8B checkpoint" src="https://img.shields.io/badge/HF-Qwen3--8B--SPADER-ffcc4d?logo=huggingface&logoColor=black"></a>
   <a href="https://huggingface.co/KhanCold/llama3-8b-spader"><img alt="Llama checkpoint" src="https://img.shields.io/badge/HF-Llama--3.1--8B--SPADER-ffcc4d?logo=huggingface&logoColor=black"></a>
   <a href="https://arxiv.org/abs/2606.00593"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2606.00593-b31b1b?logo=arxiv&logoColor=white"></a>
@@ -34,7 +37,8 @@ SPADER includes Step-wise Peer Advantage (SPA), a critic-free step-level credit 
 It also includes a diversity-aware exploration reward that promotes long-tail entity discovery by upweighting rare findings and downweighting redundant ones.
 Experiments on QAMPARI, Mintaka, WebQSP, and QUEST show that SPADER generally improves recall and overall F1 over prompting-based agents, outcome-supervised RL methods, and recent step-level supervision approaches.
 Our code and model weights are available at [https://github.com/KhanCold/spader](https://github.com/KhanCold/spader).
-Paper: [arXiv:2606.00593](https://arxiv.org/abs/2606.00593).
+
+Paper: [ACL Anthology](https://aclanthology.org/2026.emnlp-main.894/) | [PDF](https://aclanthology.org/2026.emnlp-main.894.pdf) | [arXiv:2606.00593](https://arxiv.org/abs/2606.00593).
 
 SPADER trains tool-augmented search agents for multi-answer QA. The repository keeps the original VERL training stack and adds a SPADER reward manager plus a masked step-level GRPO advantage estimator.
 
@@ -277,13 +281,25 @@ Results are written to `run_test/results/<dataset>/`.
 ## Citation
 
 ```bibtex
-@misc{shi2026spaderstepwisepeeradvantage,
-      title={SPADER: Step-wise Peer Advantage with Diversity-Aware Exploration Rewards for Multi-Answer Question Answering}, 
-      author={Qiming Shi and Zhaolu Kang and Yunfan Zhou and Di Weng and Yingcai Wu},
-      year={2026},
-      eprint={2606.00593},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2606.00593}, 
+@inproceedings{shi-etal-2026-spader,
+    title = "{SPADER}: Step-wise Peer Advantage with Diversity-Aware Exploration Rewards for Multi-Answer Question Answering",
+    author = "Shi, Qiming  and
+      Kang, Zhaolu  and
+      Zhou, Yunfan  and
+      Weng, Di  and
+      Wu, Yingcai",
+    editor = "Lee, Hung-Yi  and
+      Dev, Sunipa  and
+      Li, Junyi Jessy  and
+      Elliott, Desmond",
+    booktitle = "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing",
+    month = oct,
+    year = "2026",
+    address = "Budapest, Hungary",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.emnlp-main.894/",
+    doi = "10.18653/2026.emnlp-main.894",
+    pages = "20604--20621",
+    ISBN = "979-8-89176-459-0"
 }
 ```
